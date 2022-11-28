@@ -4,9 +4,10 @@ function Navbar() {
     const [show, setShow] = useState(false);
   return (
    <>
-    <nav class="navbar navbar-expand-lg bg-light">
+   <section className='navbar-bg' > 
+    <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">UserInfo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" 
     onClick={()=>{
         setShow(!show)
@@ -31,12 +32,13 @@ function Navbar() {
        
       </ul>
       <form class="d-flex" role="search">
-        <button class="btn btn-outline-success" type="submit">Sign up</button>
-        <button class="btn btn-outline-success" type="submit">Log in</button>
+        <button class="btn   btn-style " type="submit">Sign up</button>
+        <button class="btn   btn-style btn-style-border " type="submit">Log in</button>
       </form>
     </div>
   </div>
 </nav>
+</section>
    </>
   )
 }
