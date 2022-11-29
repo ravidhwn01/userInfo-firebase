@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import Midsec from './components/Midsec'
 import Navbar from './components/Navbar'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
    <>
     <Navbar/>
     <Header/>
+    <Midsec/>
    </>
   )
 }
