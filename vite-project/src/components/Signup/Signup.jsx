@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import InputControl from "../inputcontrol/InputControl";
-import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword ,updateProfile } from "firebase/auth";
 import { auth } from "../../firebase";
+import { async } from "@firebase/util";
 function Signup() {
+    const navigate =  useNavigate()
   const [values, setValues] = useState({
     name: "",
     email: "",
     password: "",
   });
   const [errorMsg, setErrorMsg] = useState("");
+    const [submitbtndisable, setsubmitbtndisable] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!values.name || !values.email || !values.password) {
@@ -17,12 +20,23 @@ function Signup() {
       return;
     }
     setErrorMsg("");
+    setsubmitbtndisable(true);
     // console.log(values);
     createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((res) => {
-        console.log(res);
+      .then(async (res) => {
+        const user = res.user
+        await updateProfile(user, {
+            displayName: values.name
+        })
+        navigate("/")  // redirect to home
+        console.log(user);
+        // console.log(res);
       })
-      .catch((e) => console.log("error", e));
+      .catch((e) => {
+        setsubmitbtndisable(false)
+        setErrorMsg(e.message);
+        // console.log("error", e)});
+        });
   };
   return (
     <div>
