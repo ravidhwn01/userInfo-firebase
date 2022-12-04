@@ -28,7 +28,7 @@ function Signup() {
         await updateProfile(user, {
             displayName: values.name
         })
-        navigate("/")  // redirect to home
+        navigate("/")   // redirect to home
         console.log(user);
         // console.log(res);
       })
@@ -64,7 +64,7 @@ function Signup() {
       />
       <div className="btn">
         <b>{errorMsg}</b> <br />
-        <button onClick={handleSubmit}>Signup</button>
+        <button disabled = {submitbtndisable} onClick={handleSubmit}>Signup</button>
         <p>
           already have an account?
           <Link to="/login">Login</Link>
